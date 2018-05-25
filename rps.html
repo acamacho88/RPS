@@ -29,24 +29,27 @@
             document.onkeyup = function(event) {
                 var choice = event.key;
                 choice = choice.toLowerCase();
+                if (choice == 'r' || choice == 'p' || choice == 's') {
+                    computerChoice = Math.floor(Math.random()*3);
 
-                computerChoice = Math.floor(Math.random()*3);
+                    computerChoice = choices[computerChoice];
 
-                computerChoice = choices[computerChoice];
+                    if (choice == computerChoice) {
+                        ties += 1;
+                    } else if ((choice == 'r' && computerChoice == 'p') || (choice == 'p' && computerChoice == 's') || (choice == 's' && computerChoice == 'r')) {
+                        losses += 1;
+                    } else {
+                        wins += 1;
+                    }
 
-                if (choice == computerChoice) {
-                    ties += 1;
-                } else if ((choice == 'r' && computerChoice == 'p') || (choice == 'p' && computerChoice == 's') || (choice == 's' && computerChoice == 'r')) {
-                    losses += 1;
+                    page_ychoice.textContent = "You chose: " + choice;
+                    page_cchoice.textContent = "The computer chose: " + computerChoice;
+                    page_wins.textContent = "wins: " + wins;
+                    page_losses.textContent = "losses: " + losses;
+                    page_ties.textContent = "ties: " + ties;
                 } else {
-                    wins += 1;
+                    alert("Invalid letter!");
                 }
-
-                page_ychoice.textContent = "You chose: " + choice;
-                page_cchoice.textContent = "The computer chose: " + computerChoice;
-                page_wins.textContent = "wins: " + wins;
-                page_losses.textContent = "losses: " + losses;
-                page_ties.textContent = "ties: " + ties;
                 
             }
         </script>
