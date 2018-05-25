@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock, Paper, Scissors</title>
+    </head>
+    <body>
+        <h1 id="text-header">Press r, p, or s</h1>
+        <h2 id="your_choice"></h2>
+        <h2 id="comp_choice"></h2>
+        <h2 id="wins"></h2>
+        <h2 id="losses"></h2>
+        <h2 id="ties"></h2>
+        <script type="text/javascript">
+            var text = document.getElementById("text-header");
+            var page_ychoice = document.getElementById("your_choice");
+            var page_cchoice = document.getElementById("comp_choice");
+            var page_wins = document.getElementById("wins");
+            var page_losses = document.getElementById("losses");
+            var page_ties = document.getElementById("ties");
+
+            var wins = 0;
+            var losses = 0;
+            var ties = 0;
+
+            var choices = ['r','p','s'];
+
+            var computerChoice;
+
+            document.onkeyup = function(event) {
+                var choice = event.key;
+                choice = choice.toLowerCase();
+
+                computerChoice = Math.floor(Math.random()*3);
+
+                computerChoice = choices[computerChoice];
+
+                if (choice == computerChoice) {
+                    ties += 1;
+                } else if ((choice == 'r' && computerChoice == 'p') || (choice == 'p' && computerChoice == 's') || (choice == 's' && computerChoice == 'r')) {
+                    losses += 1;
+                } else {
+                    wins += 1;
+                }
+
+                page_ychoice.textContent = "You chose: " + choice;
+                page_cchoice.textContent = "The computer chose: " + computerChoice;
+                page_wins.textContent = "wins: " + wins;
+                page_losses.textContent = "losses: " + losses;
+                page_ties.textContent = "ties: " + ties;
+                
+            }
+        </script>
+    </body>
+</html>
